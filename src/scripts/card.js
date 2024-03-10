@@ -15,4 +15,14 @@ const createCard = (cardData, deleteCallback, openImage, cardLike) => {
   return cardElement;
 }
 
-export {createCard};
+//Поставим лайкос
+function likeCard(likeEvt) { 
+  likeEvt.classList.toggle('card__like-button_is-active'); 
+}
+
+// @todo: Функция удаления карточки
+const deleteCard = (card) => {
+  card.remove();
+}
+
+export {createCard, likeCard, deleteCard};
