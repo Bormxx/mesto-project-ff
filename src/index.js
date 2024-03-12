@@ -12,12 +12,12 @@ console.log(doubledNumbers); // 4, 6, 10
 
 const editProfileButton = document.querySelector('.profile__edit-button'); //Кнопочка "редактировать профиль"
 const addPlaceButton = document.querySelector('.profile__add-button'); //Кнопочка "добавить новое место"
-const formEditProfile = document.querySelector('.popup_type_edit'); //Форма редактирования профиля
-formEditProfile.addEventListener('submit', (evt)=> formSubmitProfile(formEditProfile, evt));
-formEditProfile.addEventListener('click', (evt) => closePopup(formEditProfile, evt));
-const formAddCard = document.querySelector('.popup_type_new-card'); //Форма добавления места
-formAddCard.addEventListener('submit', (evt)=> formSubmitPlace(formAddCard, evt));
-formAddCard.addEventListener('click', (evt) => closePopup(formAddCard, evt));
+const profilePopup = document.querySelector('.popup_type_edit'); //Форма редактирования профиля
+profilePopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handleProfileFormSubmit(profilePopup, evt));
+profilePopup.addEventListener('click', (evt) => closePopup(profilePopup, evt));
+const cardPopup = document.querySelector('.popup_type_new-card'); //Форма добавления места
+cardPopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handlePlaceFormSubmit(cardPopup, evt));
+cardPopup.addEventListener('click', (evt) => closePopup(cardPopup, evt));
 const profileTitle = document.querySelector('.profile__title'); //Поле ФИО
 const profileDescription = document.querySelector('.profile__description'); //Поле описания
 const nameInput = document.querySelector('.popup__input_type_name'); //Поле ввода ФИО в форме для редактирования профиля
@@ -28,25 +28,23 @@ const cardsContainer = document.querySelector('.places__list');
 editProfileButton.addEventListener('click', () => {//Это про "Редактировать профиль"
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
-  openModal(formEditProfile);
+  openModal(profilePopup);
 });
 addPlaceButton.addEventListener('click', () => {//Это про "Добавить место"
-  openModal(formAddCard);
+  openModal(cardPopup);
 });
 
 //Отдельная функция "submit" для редактирования профиля
-function formSubmitProfile(popup, evt) {
+function handleProfileFormSubmit(popup, evt) {
   evt.preventDefault();
-  evt.stopImmediatePropagation();
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closeModal(popup);
 }
 
 //Отдельная функция "submit" для добавления места
-function formSubmitPlace(popup, evt) {
+function handlePlaceFormSubmit(popup, evt) {
   evt.preventDefault();
-  evt.stopImmediatePropagation();
   const addCard = {
     name: document.querySelector('.popup__input_type_card-name').value,
     link: document.querySelector('.popup__input_type_url').value
