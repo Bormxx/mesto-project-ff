@@ -14,11 +14,11 @@
   </header>
   <main class="content">
     <section class="profile page__section">
-      <div class="profile__image" ></div>
+      <div class="profile__image" id="idAvatar"><button class="profile__image-blackout"></button></div>
       <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <h1 class="profile__title"></h1>
         <button class="profile__edit-button" type="button" aria-label="Редактировать профиль пользователя"></button> <!-- Добавил. -->
-        <p class="profile__description">Исследователь океана</p>
+        <p class="profile__description"></p>
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
@@ -39,21 +39,61 @@
     <div class="popup__content ">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="editProfile">
-        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required>
-        <input type="text" name="description" class="popup__input popup__input_type_description" placeholder="Занятие" required>
+      <form class="popup__form" name="editProfile" novalidate >
+        <input 
+          type="text" 
+          name="name" 
+          class="popup__input popup__input_type_name " 
+          placeholder="Имя" 
+          required 
+          minlength="2" 
+          maxlength="40"
+          pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+          data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+        >
+        <span class="name_error form__span_error">Необходимо заполнить данное поле</span>
+        <input 
+          type="text" 
+          name="description" 
+          class="popup__input popup__input_type_description " 
+          placeholder="Занятие" 
+          required 
+          minlength="2" 
+          maxlength="200"
+          pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+          data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+        >
+        <span class="description_error form__span_error">Необходимо заполнить данное поле</span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup popup_type_new-card popup_is-animated">
     <div class="popup__content ">
-      <button type="button" class="popup__close"></button>
+      <button type="button" class="popup__close" ></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="new-place">
-        <input type="text" name="place-name" class="popup__input popup__input_type_card-name" placeholder="Название" required>
-        <input type="url" name="link" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку" required>
-        <button type="submit" class="button popup__button">Сохранить</button>
+      <form class="popup__form" name="new-place" >
+        <input 
+          type="text" 
+          name="place-name" 
+          class="popup__input popup__input_type_card-name " 
+          placeholder="Название" 
+          required 
+          minlength="2" 
+          maxlength="30"
+          pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+          data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+        >
+        <span class="place-name_error form__span_error">Необходимо заполнить данное поле</span>
+        <input 
+          type="url" 
+          name="link" 
+          class="popup__input popup__input_type_url " 
+          placeholder="Ссылка на картинку" 
+          required 
+        >
+        <span class="link_error form__span_error">Необходимо заполнить данное поле</span>
+        <button type="submit" class="button popup__button" >Сохранить</button>
       </form>
     </div>
   </div>
@@ -64,7 +104,32 @@
       <p class="popup__caption"></p>
     </div>
   </div>
+  <!--Новые попапы-->
+  <div class="popup popup_type_edit-avatar popup_is-animated">
+    <div class="popup__content ">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form" name="new-avatar">
+        <input type="url" name="link" class="popup__input popup__input_type_url " placeholder="Ссылка на аватар"
+          required>
+        <span class="link_error form__span_error">Необходимо заполнить данное поле</span>
+        <button type="submit" class="button popup__button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_delete-card popup_is-animated">
+    <div class="popup__content ">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__title">Вы уверены?</h3>
+      <form class="popup__form" name="new-avatar">
+        <button type="submit" class="button popup__button">Да</button>
+      </form>
+    </div>
+  </div>
+
 </div>
+
+
 <!--
 <script src="./scripts/cards.js"></script>  defer мы ещё не изучали :о 
 <script src="./scripts/index.js" defer></script>
@@ -77,7 +142,10 @@
     <div class="card__description">
       <h2 class="card__title">
       </h2>
-      <button type="button" class="card__like-button"></button>
+      <div class="like-box">
+        <button type="button" class="card__like-button"></button>
+        <span class="like-count">0</span>
+      </div>
     </div>
   </li>
 </template>

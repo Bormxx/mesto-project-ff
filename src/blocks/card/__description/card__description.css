@@ -5,3 +5,9 @@
   background: #fff;
   padding: 25px 20px;
 }
+
+.like-box {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+}

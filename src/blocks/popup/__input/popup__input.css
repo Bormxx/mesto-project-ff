@@ -10,6 +10,26 @@
   margin-bottom: 10px;
 }
 
+.form__span_error {
+  display: none;
+}
+
+.popup__input_type_error {
+  border-bottom-color: red;
+}
+
+.popup__error_visible {
+  margin-top: -8px;
+  position: absolute;
+  display: block;
+  font-size: 12px;
+  color: #f00;
+}
+
+.popup__error_visible:last-of-type {
+  margin-top: 2px;
+}
+
 .popup__input:last-of-type {
   margin-bottom: 0;
 }

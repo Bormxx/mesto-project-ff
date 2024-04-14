@@ -8,6 +8,8 @@
   background-position: center;
   margin: 0 29px 0 0;
   background-image: url('../../../images/avatar.jpg');
+  /* background-image: url('../../../images/avatar.jpg'); */
+  /* https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg */
 }
 
 @media screen and (max-width: 740px) {
@@ -20,4 +22,23 @@
   .profile__image {
     margin-right: 0;
   }
+}
+
+.profile__image-blackout {
+  width: 120px;
+  height: 120px;
+  border-radius: 2px;
+  border: none;
+  background: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+}
+
+.profile__image-blackout:hover {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  cursor: pointer;
+  background-image: url('../../../images/Vector.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
