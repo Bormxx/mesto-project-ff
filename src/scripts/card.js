@@ -6,10 +6,8 @@ let removeCard = '';
 let submitDelete = '';
 // @todo: Темплейт карточки
 const cardTemplate = document.querySelector('#card-template').content;
-// @todo: Функция создания карточки
 const createCard = (cardData, deleteCallback, openImage, cardLike, likeAmount, idLikeByAuthor, idLike, deleteBasket) => {  
   const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
-  // @todo: DOM узлы
   const cardImage = cardElement.querySelector('.card__image');
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button');
@@ -38,7 +36,6 @@ const createCard = (cardData, deleteCallback, openImage, cardLike, likeAmount, i
 const confirmPopup = document.querySelector('.popup_type_delete-card');
 confirmPopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handleDeleteSubmit(confirmPopup, evt));
 confirmPopup.addEventListener('click', (evt) => closePopup(confirmPopup, evt));
-// const cardsContainer = document.querySelector('.places__list');
 
 //Поставим лайкос ...или снимем.
 function likeCard(likeEvt) { 

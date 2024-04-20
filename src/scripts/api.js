@@ -31,7 +31,6 @@ const getAuthor = () => {
 }
 
 const editAccount = (nameVar, aboutVar, popup) => {
-  popup.querySelector('.popup__button').textContent = 'Сохранить...';
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
@@ -42,7 +41,6 @@ const editAccount = (nameVar, aboutVar, popup) => {
   })
   .then(res => {
     if (res.ok) {
-      popup.querySelector('.popup__button').textContent = 'Сохранить';
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
@@ -50,7 +48,6 @@ const editAccount = (nameVar, aboutVar, popup) => {
 }
 
 const editAvatar = (avatarUrl) => {
-  popup.querySelector('.popup__button').textContent = 'Сохранить...';
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
@@ -60,15 +57,13 @@ const editAvatar = (avatarUrl) => {
   })
   .then(res => {
     if (res.ok) {
-      popup.querySelector('.popup__button').textContent = 'Сохранить';
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   });
 }
 
-const addPlace = (nameVar, linkVar, popup) => {
-  popup.querySelector('.popup__button').textContent = 'Сохранить...';
+const addPlace = (nameVar, linkVar) => {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
@@ -79,7 +74,6 @@ const addPlace = (nameVar, linkVar, popup) => {
   })
   .then(res => {
     if (res.ok) {
-      popup.querySelector('.popup__button').textContent = 'Сохранить';
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);

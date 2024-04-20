@@ -87,13 +87,17 @@ const disableOnStart = (form, validationConfig) => {
 //Отдельная функция "submit" для редактирования профиля
 function handleProfileFormSubmit(popup, evt) {
   evt.preventDefault();
-  editAccount(nameInput.value, jobInput.value, popup)
+  popup.querySelector('.popup__button').textContent = 'Сохранить...';
+  editAccount(nameInput.value, jobInput.value)
   .then(() => {
     profileTitle.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
   })
   .catch((err) => {
     console.log(err); // выводим ошибку в консоль
+  })
+  .finally(() => {
+    popup.querySelector('.popup__button').textContent = 'Сохранить';
   });
   closeModal(popup);
 }
@@ -101,12 +105,17 @@ function handleProfileFormSubmit(popup, evt) {
 //Отдельная функция "submit" для редактирования аватара
 function handleAvatarFormSubmit(popup, evt) {
   evt.preventDefault();
+  popup.querySelector('.popup__button').textContent = 'Сохранить...';
   editAvatar(urlAvatarInput.value)
   .then(() => {
+    
     avatarElementUrlCSS.style['background-image'] = `url('${urlAvatarInput.value}')`;
   })
   .catch((err) => {
     console.log(err); // выводим ошибку в консоль
+  })
+  .finally(() => {
+    popup.querySelector('.popup__button').textContent = 'Сохранить';
   });
   closeModal(popup);
 }
@@ -122,12 +131,16 @@ function handlePlaceFormSubmit(popup, evt) {
     name: popupName.value,
     link: popupUrl.value
   }
-  addPlace(popupName.value, popupUrl.value, popup)
+  popup.querySelector('.popup__button').textContent = 'Сохранить...';
+  addPlace(popupName.value, popupUrl.value)
   .then((res) => {
     cardsContainer.prepend(createCard(addCard, deleteCard, zoomImage, likeCard, res.likes.length, null, res._id));
   })
   .catch((err) => {
     console.log(err); // выводим ошибку в консоль
+  })
+  .finally(() => {
+    popup.querySelector('.popup__button').textContent = 'Сохранить';
   });
   popupName.value = '';
   popupUrl.value = '';
