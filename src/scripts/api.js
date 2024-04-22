@@ -30,7 +30,7 @@ const getAuthor = () => {
   });
 }
 
-const editAccount = (nameVar, aboutVar, popup) => {
+const editAccount = (nameVar, aboutVar) => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,

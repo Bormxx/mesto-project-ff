@@ -33,6 +33,8 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 let idAuthor = '';
+let idCard = '';
+let elementCard = '';
 
 //Слушатели событий
 cardPopup.querySelector(validationConfig.formSelector).addEventListener('submit', (evt)=> handlePlaceFormSubmit(cardPopup, evt));
@@ -41,18 +43,22 @@ avatarPopup.querySelector(validationConfig.formSelector).addEventListener('submi
 avatarPopup.addEventListener('click', (evt) => closePopup(avatarPopup, evt));
 profilePopup.querySelector(validationConfig.formSelector).addEventListener('submit', (evt)=> handleProfileFormSubmit(profilePopup, evt));
 profilePopup.addEventListener('click', (evt) => closePopup(profilePopup, evt));
+confirmPopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handleDeleteSubmit(confirmPopup, evt, idCard, elementCard));
 
-
-//Всё про удаление карточки, включая иконку корзины
+//Выключаем проверку при старте
 const disableOnStart = (form, validationConfig) => {
   form.querySelector(validationConfig.submitButtonSelector).setAttribute('disabled', true);
   const button = form.querySelector(validationConfig.submitButtonSelector);
   button.classList.add(validationConfig.inactiveButtonClass);
 }
 
-const deleteCard = (idCard, cardElement) => {
+
+//Всё про удаление карточки, включая иконку корзины
+//Наставник долго отвечает. Я не люблю ждать)) Надеюсь, с удалением теперь всё норм. Некрасиво, но, вроде, норм.
+const deleteCard = (cardId, cardElement) => {
   openModal(confirmPopup);
-  confirmPopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handleDeleteSubmit(confirmPopup, evt, idCard, cardElement));
+  idCard = cardId;
+  elementCard = cardElement;
   confirmPopup.addEventListener('click', (evt) => closePopup(confirmPopup, evt));
 }
 
