@@ -18,7 +18,7 @@ function closeModal(popup) {//В индексе эта функция не вс�
 //Закроем попапу по оверлею и крестику
 function closePopup(popup, evt){
   if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close')) {
-    popup.removeEventListener('click', (evt) => closeModal(popup, evt));
+    // popup.removeEventListener('click', (evt) => closeModal(popup, evt));
     closeModal(popup);
   }
 }

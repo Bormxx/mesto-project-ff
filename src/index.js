@@ -43,7 +43,10 @@ avatarPopup.querySelector(validationConfig.formSelector).addEventListener('submi
 avatarPopup.addEventListener('click', (evt) => closePopup(avatarPopup, evt));
 profilePopup.querySelector(validationConfig.formSelector).addEventListener('submit', (evt)=> handleProfileFormSubmit(profilePopup, evt));
 profilePopup.addEventListener('click', (evt) => closePopup(profilePopup, evt));
-confirmPopup.querySelector('.popup__form').addEventListener('submit', (evt)=> handleDeleteSubmit(confirmPopup, evt, idCard, elementCard));
+confirmPopup.querySelector(validationConfig.formSelector).addEventListener('submit', (evt)=> handleDeleteSubmit(confirmPopup, evt, idCard, elementCard));
+confirmPopup.addEventListener('click', (evt) => closePopup(confirmPopup, evt));
+popupZoomImage.addEventListener('click', (evt) => closePopup(popupZoomImage, evt));
+
 
 //Выключаем проверку при старте
 const disableOnStart = (form, validationConfig) => {
@@ -59,7 +62,6 @@ const deleteCard = (cardId, cardElement) => {
   openModal(confirmPopup);
   idCard = cardId;
   elementCard = cardElement;
-  confirmPopup.addEventListener('click', (evt) => closePopup(confirmPopup, evt));
 }
 
 function handleDeleteSubmit(popup, evt, idCard, cardElement) {
@@ -79,7 +81,6 @@ const zoomImage = (card) => {
   imagePopup.src = card.link;
   imageCaption.textContent = card.name;
   openModal(popupZoomImage);
-  popupZoomImage.addEventListener('click', (evt) => closePopup(popupZoomImage, evt));
 }
 
 //Всё про добавление новой карточки
